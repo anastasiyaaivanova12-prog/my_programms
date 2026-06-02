@@ -1,0 +1,37 @@
+.game_field{
+    margin: 50px;
+    width: fit-content;
+}
+.flex_row {
+    display: flex;
+}
+.field_sell, .bomb {
+    display: flex;
+    width: 36px;
+    height: 36px;
+    border: 1px solid grey;
+    margin: 4px;
+    background-color: #D1D1D1;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    font-family: Verdana;
+    font-size: 14pt;
+    color: #5B5B5B;
+}
+.bomb__open{
+    background-color: red;
+}
+.open_sell{
+    background-color: white;
+}
+.suspicion {
+    background-color: white;
+}
+#lose{
+    font-family: Verdana;
+    color: darkred;
+    font-size: 20pt;
+    margin: -20px 50px 0px 220px;
+    visibility: hidden;
+}

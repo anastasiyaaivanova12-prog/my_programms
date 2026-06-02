@@ -1,0 +1,228 @@
+﻿<html>
+<head>
+    <link href="style.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+    <div class="game_field"></div>
+    <div id="lose"></div>
+    <script>
+        let rows = 12;
+        let columns = 12;
+        let bombs = 20;
+        let safeSells = (rows * columns) - bombs;
+        let countForWin = 0;
+        let firstInit = true;
+        let gameOver = false;
+        let gameStarted = false;
+        const main = document.getElementsByClassName('game_field')[0];
+        let loseBanner = document.getElementById('lose');
+
+        const mineStartEvent = new CustomEvent('mine.start', {
+            detail: {
+                message: 'Игра началась',
+                timestamp: new Date(),
+                fieldSize: { rows, columns },
+                bombsCount: bombs
+            }
+        });
+
+        function createMineStepEvent(row, col) {
+            return new CustomEvent('mine.step', {
+                detail: {
+                    message: 'Игрок сделал ход',
+                    timestamp: new Date(),
+                    coordinates: { row, col },
+                    stepNumber: countForWin + 1
+                }
+            });
+        }
+
+        function createMineEndEvent(result, reason = '') {
+            return new CustomEvent('mine.end', {
+                detail: {
+                    message: 'Игра завершилась',
+                    timestamp: new Date(),
+                    result: result, 
+                    reason: reason,
+                    steps: countForWin,
+                    bombsFound: document.querySelectorAll('.suspicion.bomb').length
+                }
+            });
+        }
+
+        document.addEventListener('mine.start', function (e) {
+            console.log('Событие mine.start:', e.detail);
+            gameStarted = true;
+        });
+        document.addEventListener('mine.step', function (e) {
+            console.log('Событие mine.step:', e.detail);
+        });
+        document.addEventListener('mine.end', function (e) {
+            console.log('Событие mine.end:', e.detail);
+            if (e.detail.result === 'lose') {
+                loseBanner.textContent = 'Вы проиграли!';
+                loseBanner.style.visibility = 'visible';
+                revealAllBombs();
+            } else if (e.detail.result === 'win') {
+                loseBanner.textContent = 'Вы выиграли!';
+                loseBanner.style.color = 'green';
+                loseBanner.style.visibility = 'visible';
+            }
+        });
+
+
+        (function createField() {
+            for (i = 0; i < rows; i++) {
+                let flex_row = document.createElement('div');
+                flex_row.classList.add('flex_row');
+                for (j = 0; j < columns; j++) {
+                    let sell = document.createElement('div');
+                    sell.classList.add('field_sell');
+                    sell.dataset.row = i;
+                    sell.dataset.col = j;
+                    flex_row.appendChild(sell);
+                };
+                main.appendChild(flex_row);
+            };
+        }());
+
+        function initGame(e) {
+            if (firstInit) {
+                let safeSell = e.target;
+                addBombs(safeSell);
+                firstInit = false;
+                document.dispatchEvent(mineStartEvent);
+            };
+        };
+
+        function addBombs(safeSell) {
+            let bombsCount = 0;
+            while (bombsCount < bombs) {
+                let row = Math.floor(Math.random() * rows);
+                let col = Math.floor(Math.random() * columns);
+                const sell = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+                if (safeSell === sell) {
+                    continue;
+                };
+                if (sell.classList.contains('bomb')) {
+                    continue;
+                } else {
+                    sell.classList.add('bomb');
+                    bombsCount += 1;
+                };
+            };
+        };
+        var coordinates_around = [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]];
+        function addNumbers(sell, row, col) {
+            let bombNum = 0;
+            for (let [dr, dc] of coordinates_around) {
+                let nearRow = row + dr;
+                let nearCol = col + dc;
+                if (nearRow >= 0 && nearRow < rows && nearCol >= 0 && nearCol < columns) {
+                    let sell = document.querySelector(`[data-row="${nearRow}"][data-col="${nearCol}"]`);
+                    if (sell.classList.contains('bomb')) {
+                        bombNum++;
+                    };
+                };
+            };
+            return bombNum;
+        };
+
+        function openArea(sell, row, col) {
+            for (let [dr, dc] of coordinates_around) {
+                let nearRow = row + dr;
+                let nearCol = col + dc;
+                if (nearRow >= 0 && nearRow < rows && nearCol >= 0 && nearCol < columns) {
+                    let sell = document.querySelector(`[data-row="${nearRow}"][data-col="${nearCol}"]`);
+                    if (sell.classList.contains('open_sell') || sell.classList.contains('suspicion')) {
+                        continue;
+                    };
+                    let num = addNumbers(sell, nearRow, nearCol);
+                    if (num === 0) {
+                        sell.textContent = '';
+                    } else {
+                        sell.textContent = num;
+                    };
+                    sell.classList.add('open_sell');
+                    countForWin += 1;
+                    if (num === 0) {
+                        openArea(sell, nearRow, nearCol);
+                    };
+                };
+            };
+        };
+
+        main.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+
+        function leftMouse(e) {
+            const sell = e.target;
+            if (sell.classList.contains('bomb')) {
+                sell.classList.add('bomb__open');
+                sell.textContent = '💣';
+                document.dispatchEvent(createMineEndEvent('lose', 'Нажата бомба'));
+                gameOver = true;
+                return;
+            };
+
+            if (sell.classList.contains('open_sell') || sell.classList.contains('suspicion')) {
+                return;
+            }
+
+            const row = parseInt(sell.dataset.row);
+            const column = parseInt(sell.dataset.col);
+            let num = addNumbers(sell, row, column);
+            document.dispatchEvent(createMineStepEvent(row, column));
+
+            if (num === 0) {
+                sell.textContent = '';
+                openArea(sell, row, column);
+            } else {
+                sell.textContent = num;
+            }
+            sell.classList.add('open_sell');
+            countForWin += 1;
+
+            if (countForWin === safeSells) {
+                document.dispatchEvent(createMineEndEvent('win', 'Открыты все безопасные клетки'));
+                gameOver = true;
+            };
+        };
+
+        function rightMouse(e) {
+            const sell = e.target;
+            const row = parseInt(sell.dataset.row);
+            const column = parseInt(sell.dataset.col);
+
+            if (sell.classList.contains('open_sell')) {
+                return;
+            }
+
+            document.dispatchEvent(createMineStepEvent(row, column));
+
+            if (sell.classList.contains('suspicion')) {
+                sell.classList.remove('suspicion');
+                sell.textContent = '';
+            } else {
+                sell.classList.add('suspicion');
+                sell.textContent = '🚩';
+            }
+        };
+
+        document.getElementsByClassName('game_field')[0].addEventListener('mousedown', function (e) {
+            if (e.target.classList.contains('field_sell')) {
+                if (gameOver === true) {
+                    return;
+                };
+                initGame(e);
+                if (e.button === 0) {
+                    leftMouse(e);
+                } else if (e.button === 2) {
+                    rightMouse(e);
+                };
+            };
+        });
+    </script>
+</body>
+</html>
