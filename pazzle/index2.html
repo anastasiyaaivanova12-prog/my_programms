@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link href="style2.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+    <div class="puzzle-container">
+        <div class="img__and__puzzle">
+            <div class="grid-container"></div>
+            <img src="image.png" class="orig__image" />
+        </div>
+        <div class="tiles-container"></div>
+    </div>
+
+    <script>
+        (function () {
+            let width = 450;
+            let height = 300;
+            let size = 50;
+            let gridColumns = 9;
+            let gridRows = 6;
+
+            const imgUrl = 'image.png';
+            let img = document.createElement('img');
+            img.src = imgUrl;
+
+            const tilesContainer = document.getElementsByClassName('tiles-container')[0];
+            const gridContainer = document.getElementsByClassName('grid-container')[0];
+
+            let tiles = [];
+
+            let startApp = function () {
+                let mx = Math.round(width / size);
+                let my = Math.round(height / size);
+
+                function createGrid() {
+                    for (let i = 0; i < gridRows; i++) {
+                        for (let j = 0; j < gridColumns; j++) {
+                            const cell = document.createElement('div');
+                            cell.classList.add('grid-cell');
+                            cell.dataset.row = i;
+                            cell.dataset.col = j;
+                            cell.addEventListener('dragover', dragOver);
+                            cell.addEventListener('drop', drop);
+                            gridContainer.appendChild(cell);
+                        };
+                    };
+                    const cell = document.createElement('div');
+                    cell.classList.add('grid-cell');
+                    cell.style.backgroundColor = 'grey';
+                    cell.dataset.row = 7;
+                    cell.dataset.col = 1;
+                    cell.addEventListener('dragover', dragOver);
+                    cell.addEventListener('drop', drop);
+                    gridContainer.appendChild(cell);
+                };
+
+                let tileT = document.createElement('div');
+                tileT.classList.add('puzzle__item');
+                tileT.style.width = size + 'px';
+                tileT.style.height = size + 'px';
+                tileT.style.backgroundImage = 'url(' + img.src + ')';
+                tileT.draggable = true;
+
+                let tileIndex = 0;
+                for (let y = 0; y < my; y++) {
+                    for (let x = 0; x < mx; x++) {
+                        let tile = tileT.cloneNode(true);
+                        tile.style.backgroundPosition = (x * -size) + 'px ' + (y * -size) + 'px';
+
+                        tile.dataset.x = x;
+                        tile.dataset.y = y;
+                        tile.dataset.tileIndex = tileIndex++;
+
+                        tile.style.left = `${Math.random() * (800 - size)}px`;
+                        tile.style.top = `${Math.random() * (600 - size)}px`;
+                        tile.addEventListener('dragstart', dragStart);
+
+                        tilesContainer.appendChild(tile);
+                        tiles.push(tile);
+                    };
+                };
+
+                createGrid();
+            };
+
+            let draggedTile = 0;
+
+            function dragStart(event) {
+                draggedTile = event.target;
+            };
+
+            function dragOver(event) {
+                event.preventDefault(); 
+            };
+
+            function drop(event) {
+                event.preventDefault();
+
+                if (draggedTile) {
+                    const cell = event.target;
+                    if (cell.classList.contains('grid-cell')) {
+                        cell.appendChild(draggedTile);
+                        draggedTile.style.position = 'static'; 
+                        draggedTile.style.margin = '0';
+                        checkPuzzleCompletion();
+                    }; 
+                };
+            };
+
+            function checkPuzzleCompletion() {
+                let correctTiles = 0;
+                const gridCells = document.querySelectorAll('.grid-cell');
+
+                gridCells.forEach(cell => {
+                    if (cell.hasChildNodes()) {
+                        const tile = cell.firstChild;
+                        const cellRow = parseInt(cell.dataset.row);
+                        const cellCol = parseInt(cell.dataset.col);
+                        const tileX = parseInt(tile.dataset.x);
+                        const tileY = parseInt(tile.dataset.y);
+
+                        if (cellCol == tileX && cellRow == tileY) {
+                            correctTiles++;
+                        };
+                    };
+                });
+
+                if (correctTiles == gridColumns * gridRows) {
+                    alert("Congratulations! You solved the puzzle!");
+                };
+            };
+            img.onload = startApp;
+        })();
+    </script>
+</body>
+</html>
+
+
+

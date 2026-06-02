@@ -1,0 +1,52 @@
+.puzzle-container {
+    display: flex; 
+    padding: 10px 20px;
+}
+
+.tiles-container {
+    width: 800px; 
+    min-height: 600px; 
+    position: relative;
+    margin-right: 20px;
+}
+
+.puzzle__item {
+    width: 50px;
+    height: 50px; 
+    position: absolute; 
+    border: 1px solid grey;
+    box-sizing: border-box;
+    cursor: pointer; 
+}
+
+.grid-container{
+    width: 460px; 
+    height: 370px; 
+    display: grid;
+    margin: 0px 20px 20px 0px;
+    grid-template-columns: repeat(9, 1fr); 
+    grid-template-rows: repeat(6, 1fr); 
+    border: 1px solid grey;
+    gap: 1px;
+}
+.dop__sell {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+}
+
+.grid-cell {
+    width: 50px; 
+    height: 50px; 
+    border: 1px solid grey; 
+    box-sizing: border-box;
+}
+
+.grid-cell.occupied {
+    border: none;
+}
+
+.orig__image {
+    width: 450px; 
+    height: 300px;
+}
