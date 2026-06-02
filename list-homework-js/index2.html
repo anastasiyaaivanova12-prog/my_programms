@@ -1,0 +1,105 @@
+<html>
+<head>
+    <link href="style2.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+    <div class="flex__container">
+        <div class="todo__app">
+            <div class="header">
+                <h2>Список задач</h2>
+                <button type="button" class="add__button">Добавить</button>
+            </div>
+            <ul class="todo__list">
+                <li class="list__item template" style="display: none"><div><input type="checkbox" class="doTask" /><span class="hiprio" style="visibility: hidden">&#9889;</span><span class="text__task"></span></div> <div class="rem-and-red"><button type="button" class="red">&#128397;</button><button type="button" class="rem">&#128465;</button></div></li>
+            </ul>
+        </div>
+            <form class="hidden">
+                <h2>Карточка задачи</h2>
+                <label for="task-hame">Задача</label><br />
+                <input type="text" id="task-name" name="info" /><br />
+                <input type="checkbox" id="hight-priority" name="info" />
+                <label for="hight-priority">Высокий приоритет &#9889;</label><br />
+                <button type="button" class="save">Сохранить</button>
+                <button type="button" class="remove">Отмена</button>
+            </form>
+    </div>
+    <script>
+        (function () {
+            let addButton = document.getElementsByClassName('add__button')[0];
+            let list = document.getElementsByClassName('todo__list')[0];
+            let form = document.getElementsByClassName('hidden')[0];
+            let taskTemplate = document.getElementsByClassName('template')[0];
+            let saveButton = document.getElementsByClassName('save')[0];
+            let removeButton = document.getElementsByClassName('remove')[0]; 
+            let editButton = document.getElementsByClassName('red');
+            let deleteButton = document.getElementsByClassName('rem');
+            let number = 0;
+            let elem = '';
+
+            addButton.addEventListener('click', e => {
+                if (form.style.visibility === 'visible') { 
+                    form.style.visibility = 'hidden'; 
+                    return;
+                };
+                form.style.visibility = 'visible';
+                number = 0;
+            });
+            list.addEventListener('click', e => {
+                if (e.target.classList.contains('red')) {
+                    if (form.style.visibility === 'visible') {
+                        form.style.visibility = 'hidden';
+                        return;
+                    };
+                    elem = e.target.parentElement.parentElement;
+                    if (elem.getElementsByClassName('doTask')[0].checked === true) {
+                        return;
+                    };
+                    form.style.visibility = 'visible';
+                    number = 1;
+                    elem = e.target.parentElement.parentElement;
+                    let information = document.getElementsByName('info');
+                    const textElem = elem.getElementsByClassName('text__task')[0];
+                    const hightPrioElem = elem.getElementsByClassName('hiprio')[0];
+                    information[0].value = textElem.textContent;
+                    if (hightPrioElem.style.visibility === 'visible') {
+                        information[1].checked = true;
+                    } else {
+                        information[1].checked = false;
+                    };
+                };
+                if (e.target.classList.contains('rem')) {
+                    let res = confirm('Вы уверены, что хотите удалить эту задачу?');
+                    if (res) {
+                        e.target.parentElement.parentElement.remove();
+                    };
+                };
+            });
+            removeButton.addEventListener('click', e => {
+                form.style.visibility = 'hidden';
+            });
+            saveButton.addEventListener('click', e => {
+                if (number === 0) {
+                    let newTask = taskTemplate.cloneNode(true);
+                    newTask.style.display = 'flex';
+                    let taskText = newTask.getElementsByClassName('text__task')[0];
+                    taskText.textContent = document.getElementsByName('info')[0].value;
+                    let hightPriority = document.getElementsByName('info')[1].checked;
+                    if (hightPriority === true) {
+                        newTask.getElementsByClassName('hiprio')[0].style.visibility = 'visible';
+                    };
+                    list.appendChild(newTask);
+                } else if (number === 1) {
+                    elem.getElementsByClassName('text__task')[0].textContent = document.getElementsByName('info')[0].value;
+                    if (document.getElementsByName('info')[1].checked === true) {
+                        elem.getElementsByClassName('hiprio')[0].style.visibility = 'visible';
+                    } else {
+                        elem.getElementsByClassName('hiprio')[0].style.visibility = 'hidden';
+                    };
+                };
+                form.style.visibility = 'hidden';
+            });
+
+        })();
+    </script>
+</body>
+</html>
