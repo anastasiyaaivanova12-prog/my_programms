@@ -1,0 +1,281 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <meta charset="utf-8" />
+    </head>
+    <body>
+        <div class="main-container">
+            <form name="myForm">
+                <h2>����������� �������</h2><br />
+                <!--���� � ������������� �����������-->
+                <div class="form-point">
+                    <label class="input-name">������������ �����������</label><br />
+                    <input type="text" name="info" class="main-info" /><br />
+                </div>
+                <!--���� � �������� ������ ���������-->
+                <div class="form-point">
+                    <label class="input-name">�������, ���, ��������</label><br />
+                    <!--�������� ���� ���� input � �����-������ � ���� div, ����� ��� ���� �� ����� ������-->
+                    <div class="flex-conteiner">
+                        <input type="text" name="info" class="main-info" />
+                        <!--�����-������ ��� ������������ ������-->
+                        <div class="radio-group">
+                            <label for="img1" class="radio-label">
+                                <input type="radio" name="text-alight1" value="0" id="img1" class="radio-button" />
+                                <img class="radio-image" src="align-left.png">
+                            </label>
+                            <label for="img2" class="radio-label">
+                                <input type="radio" name="text-alight1" value="1" id="img2" class="radio-button" checked />
+                                <img class="radio-image" src="align-center.png">
+                            </label>
+                            <label for="img3" class="radio-label">
+                                <input type="radio" name="text-alight1" value="2" id="img3" class="radio-button" />
+                                <img class="radio-image" src="align-right.png">
+                            </label>
+                        </div>
+                        <!--�����-������ ��� ��������� ������� ������-->
+                        <div class="radio-group">
+                            <label for="size1" class="radio-label">
+                                <input type="radio" name="text-size1" value="0" id="size1" class="radio-button" />
+                                <span class="text-size">24px</span>
+                            </label>
+                            <label for="size2" class="radio-label">
+                                <input type="radio" name="text-size1" value="1" id="size2" class="radio-button" checked />
+                                <span class="text-size">26px</span>
+                            </label>
+                            <label for="size3" class="radio-label">
+                                <input type="radio" name="text-size1" value="2" id="size3" class="radio-button" />
+                                <span class="text-size">28px</span>
+                            </label>
+                        </div>
+                    </div>
+                    <!--�����-������ ��� ������ �����-->
+                    <!--�� �� �������� � ��������� � ������� �����-��������, �� ��� �� ����� ����������� �� �� ����� ������-->
+                    <!--��� ������ ���� ��� ����� �����-->
+                    <div class="color-container-1">
+                        <label for="color1" class="radio-label">
+                            <input type="radio" name="text-color1" value="0" id="color1" class="radio-button-color" checked />
+                            <span class="circle black"> </span>
+                        </label>
+                        <label for="color2" class="radio-label">
+                            <input type="radio" name="text-color1" value="1" id="color2" class="radio-button-color" />
+                            <span class="circle blue"> </span>
+                        </label>
+                        <label for="color3" class="radio-label">
+                            <input type="radio" name="text-color1" value="2" id="color3" class="radio-button-color" />
+                            <span class="circle red"> </span>
+                        </label>
+                        <label for="color4" class="radio-label">
+                            <input type="radio" name="text-color1" value="3" id="color4" class="radio-button-color" />
+                            <span class="circle green"> </span>
+                        </label>
+                        <label for="color5" class="radio-label">
+                            <input type="radio" name="text-color1" value="4" id="color5" class="radio-button-color" />
+                            <span class="circle yellow"> </span>
+                        </label>
+                        <label for="color6" class="radio-label">
+                            <input type="radio" name="text-color1" value="5" id="color6" class="radio-button-color" />
+                            <span class="circle pink"> </span>
+                        </label>
+                    </div>
+                </div>
+                <!--���� � ����������-->
+                <div class="form-point">
+                    <label class="input-name">���������</label><br />
+                    <!--����� �� ����� ������ ������ � ����� �����, ����� ��������� �� ����� ������-->
+                    <div class="flex-conteiner">
+                        <input type="text" name="info" class="main-info" />
+                        <!--�����-������ ��� ������������ ������-->
+                        <div class="radio-group">
+                            <label for="img4" class="radio-label">
+                                <input type="radio" name="text-alight2" value="0" id="img4" class="radio-button" />
+                                <img class="radio-image" src="align-left.png">
+                            </label>
+                            <label for="img5" class="radio-label">
+                                <input type="radio" name="text-alight2" value="1" id="img5" class="radio-button" checked />
+                                <img class="radio-image" src="align-center.png">
+                            </label>
+                            <label for="img6" class="radio-label">
+                                <input type="radio" name="text-alight2" value="2" id="img6" class="radio-button" />
+                                <img class="radio-image" src="align-right.png">
+                            </label>
+                        </div>
+                        <!--�����-������ ��� ��������� ������� ������-->
+                        <div class="radio-group">
+                            <label for="size4" class="radio-label">
+                                <input type="radio" name="text-size2" value="0" id="size4" class="radio-button" />
+                                <span class="text-size">14px</span>
+                            </label>
+                            <label for="size5" class="radio-label">
+                                <input type="radio" name="text-size2" value="1" id="size5" class="radio-button" checked />
+                                <span class="text-size">16px</span>
+                            </label>
+                            <label for="size6" class="radio-label">
+                                <input type="radio" name="text-size2" value="2" id="size6" class="radio-button" />
+                                <span class="text-size">18px</span>
+                            </label>
+                        </div>
+                    </div>
+                    <!--����� ������ ��� ��������� �����-->
+                    <div class="color-container-2">
+                        <label for="color7" class="radio-label">
+                            <input type="radio" name="text-color2" value="0" id="color7" class="radio-button-color" checked />
+                            <span class="circle grey"> </span>
+                        </label>
+                        <label for="color8" class="radio-label">
+                            <input type="radio" name="text-color2" value="1" id="color8" class="radio-button-color" />
+                            <span class="circle grey2"> </span>
+                        </label>
+                        <label for="color9" class="radio-label">
+                            <input type="radio" name="text-color2" value="2" id="color9" class="radio-button-color" />
+                            <span class="circle grey3"> </span>
+                        </label>
+                        <label for="color10" class="radio-label">
+                            <input type="radio" name="text-color2" value="3" id="color10" class="radio-button-color" />
+                            <span class="circle grey4"> </span>
+                        </label>
+                        <label for="color11" class="radio-label">
+                            <input type="radio" name="text-color2" value="4" id="color11" class="radio-button-color" />
+                            <span class="circle grey5"> </span>
+                        </label>
+                        <label for="color12" class="radio-label">
+                            <input type="radio" name="text-color2" value="5" id="color12" class="radio-button-color" />
+                            <span class="circle grey6"> </span>
+                        </label>
+                    </div>
+                </div>
+                <!--���� � ���������-->
+                <div class="form-point">
+                    <label class="input-name">�������</label><br />
+                    <input type="tel" placeholder="0 123 456-78-90" name="phone" class="main-info" />
+                    <!--������ ���������� ��� ������ ������ �������� � ��������-->
+                    <!--��� ��������� � ��������� div, ����� ����� ���� ��������� ������ ��-->
+                    <div class="div-add-num">
+                        <button type="button" class="add-number" id="add-num" onclick="addNumber()"><span class="ikon-add"> </span></button>
+                        <label for="add-num" name="add-button-label">�������� ��� ���� �������</label><br />
+                    </div>
+                    <!--���� � ��� ����� ������� ��������, �� ��������� ����� (� ���� ����� display: none)-->
+                    <!--��� ������� �� ������ ���������� ������ �������� ���� ����������-->
+                    <!--���� ����� � ������ �������� �� ����� ������, ����� ��� ���� �� ����� ������-->
+                    <!--��� ���� � ��������� div, ����� ��������� �������� � ���������� ��-->
+                    <div class="div-new-num">
+                        <input type="tel" placeholder="0 123 456-78-90" name='phone' class='main-info'> <button type="button" class='rem-number' id='rem-num' onclick="remNumber()"><span class='ikon-rem'></span></button>
+                    </div>
+                </div>
+                <!--���� ����� E-mail-->
+                <div class="form-point">
+                    <label class="input-name">E-mail</label><br />
+                    <input type="text" name="email" class="main-info" />
+                    <!--������ ���������-->
+                    <input type="checkbox" name="checbox-email" id="see-email" class="checkbox" checked />
+                    <label for="see-email">����������</label><br />
+                </div>
+                <!--���� ����� ������-->
+                <div class="form-point">
+                    <label class="input-name">�����</label><br />
+                    <input type="text" name="address" class="main-info" />
+                    <input type="checkbox" id="see-address" class="checkbox" checked />
+                    <label for="see-address">����������</label><br />
+                </div>
+                <!--������, ������� "�������" �������-->
+                <button type="button" name="use" id="use" onclick="createCard()">���������</button>
+            </form>
+            <!--���� �������, �� ��������� ������, ���������� ��� ��������� ������ "���������"-->
+            <!--��� div-� ����������� � �������-->
+            <div class="business-card">
+                <div class="org div"> </div>
+                <div class="name div"> </div>
+                <div class="post div"> </div>
+                <div class="info">
+                    <div class="number div"> </div>
+                    <div class="email div"> </div>
+                    <div class="address div"> </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            //������ ��� ��������� ������
+            const alightList = ['left', 'center', 'right'];
+            const textSizesName = ['24px', '26px', '28px'];
+            const textSizesPost = ['14px', '16px', '18px'];
+            const bright�olors = ['black', '#3F88E8', '#E83F56', '#097A14', '#DCA40A', '#DC0AD5'];
+            const greyShades = ['#474747', 'black', '#636363', '#9E9E9E', '#BBBBBB', '#E3E3E3'];
+
+            var addNum = document.getElementsByClassName('div-add-num')[0];
+            var newNum = document.getElementsByClassName('div-new-num')[0];
+
+            //���������� ��� ������ ������
+            const addNumber = () => {
+                addNum.style.display = 'none';
+                newNum.style.display = 'block';
+            };
+
+            //�������� ��� ������
+            const remNumber = () => {
+                addNum.style.display = 'block';
+                newNum.style.display = 'none';
+            };
+
+            const createCard = () => {
+                //��������� �������
+                document.getElementsByClassName('business-card')[0].style.display = 'flex';
+                const textList = [];
+
+                //��������� �������� �� ����� � ���������� � ������
+                const organization = document.getElementsByName('info')[0].value;
+                textList.push(organization);
+                const fullName = document.getElementsByName('info')[1].value;
+                textList.push(fullName);
+                const post = document.getElementsByName('info')[2].value;
+                textList.push(post);
+                const number = document.getElementsByName('phone')[0].value;
+                textList.push(number);
+                //���������� ��� �� ���������� ��������������� ������ � ��������� ��������
+                if (newNum.style.display == 'block') {
+                    const number2 = document.getElementsByName('phone')[1].value;
+                    textList.push(number2);
+                    if (document.getElementsByClassName('new-num')[0]) {
+
+                    } else {
+                        document.getElementsByClassName('div')[3].insertAdjacentHTML('afterend', '<div class="number div new-num"></div>');
+                    };
+                } else {
+                    if (document.getElementsByClassName('new-num')[0]) {
+                        document.getElementsByClassName('new-num')[0].remove();
+                    };
+                };
+                const email = document.getElementsByName('email')[0].value;
+                textList.push(email);
+                const address = document.getElementsByName('address')[0].value;
+                textList.push(address);
+
+                //���������� �������
+                for (i = 0; i <= (textList.length - 1); i++){
+                    document.getElementsByClassName('div')[i].textContent = textList[i];
+                };
+
+                //�����������
+                if (document.getElementById('see-email').checked) {
+                    document.getElementsByClassName('email div')[0].style.visibility = 'visible';
+                } else {
+                    document.getElementsByClassName('email div')[0].style.visibility = 'hidden';
+                };
+                if (document.getElementById('see-address').checked) {
+                    document.getElementsByClassName('address div')[0].style.visibility = 'visible';
+                } else {
+                    document.getElementsByClassName('address div')[0].style.visibility = 'hidden';
+                };
+
+                //��������� ������
+                document.getElementsByClassName('div')[1].style.textAlign = alightList[document.querySelector('input[name="text-alight1"]:checked').value];
+                document.getElementsByClassName('div')[1].style.fontSize = textSizesName[document.querySelector('input[name="text-size1"]:checked').value];
+                document.getElementsByClassName('div')[1].style.color = bright�olors[document.querySelector('input[name="text-color1"]:checked').value];
+
+                document.getElementsByClassName('div')[2].style.textAlign = alightList[document.querySelector('input[name="text-alight2"]:checked').value];
+                document.getElementsByClassName('div')[2].style.fontSize = textSizesPost[document.querySelector('input[name="text-size2"]:checked').value];
+                document.getElementsByClassName('div')[2].style.color = greyShades[document.querySelector('input[name="text-color2"]:checked').value];
+            };
+        </script>
+    </body>
+</html>

@@ -1,0 +1,226 @@
+body{
+    background-color: #d3d3d3;
+}
+.form-point{
+    margin: 0px 0px 15px 0px;
+}
+form {
+    margin: 0px 100px;
+    border: 5px solid white;
+    width: 650px;
+    height: 100%;
+    padding: 20px 20px;
+    font-family: Verdana;
+    color: #4D4D4D;
+    background-color: white;
+    box-shadow: 0 0 15px #a9a9a9;
+}
+.main-info {
+    margin: 5px 0px 0px 0px;
+    padding: 2px 10px;
+    width: 300px;
+    height: 30px;
+    border-radius: 4px;
+    border: 1px solid grey;
+    font-family: Verdana;
+    font-size: 12pt;
+}
+#use {
+    font-size: 12pt;
+    padding: 10px 30px;
+    border-radius: 30px;
+    background-color: #4469FF;
+    color: white;
+    border: 1px solid #4469FF;
+    cursor: pointer;
+}
+
+.flex-conteiner, .color-container-1, .color-container-2{
+    display: flex;
+    align-items: flex-end;
+}
+.color-container-1, .color-container-2 {
+    margin: 10px 0px 0px 0px;
+}
+.radio-button, .radio-button-color {
+    display: none;
+}
+.radio-image, .text-size {
+    width: 26px;
+    height: 20px;
+    padding: 4px 5px;
+    cursor: pointer;
+}
+.radio-image {
+    padding: 4px 10px;
+}
+.text-size{
+    width: 40px;
+    color: black;
+}
+.radio-group {
+    display: flex;
+    margin: 0px 0px 0px 20px;
+    border-radius: 4px;
+    border: 1px solid #D9D9D9;
+}
+.radio-label {
+    display: flex;
+    align-items: center;
+}
+.radio-button:checked ~ .radio-image {
+    background-color: #D9D9D9;
+}
+.radio-button:checked ~ .text-size {
+    background-color: #D9D9D9;
+}
+
+.checkbox {
+    width: 16px;
+    height: 16px;
+    accent-color: grey;
+}
+.add-number, .rem-number {
+    cursor: pointer;
+    position:relative;
+    background-color: grey;
+    margin: 10px 10px 0px 0px;
+    border: 0px;
+    border-radius: 5px;
+    width: 20px;
+    height: 20px;
+}
+.div-new-num {
+    display: none;
+}
+.ikon-add::before {
+    content: "";
+    position: absolute;
+    top: 9px;
+    left: 2px;
+    width: 15.5px;
+    height: 3px;
+    background-color: white;
+}
+.ikon-add::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 8.5px;
+    width: 3px;
+    height: 15.5px;
+    background-color: white;
+}
+.ikon-rem::before {
+    content: "";
+    position: absolute;
+    top: 9px;
+    left: 2px;
+    width: 15.5px;
+    height: 3px;
+    background-color: white;
+}
+
+.circle {
+    width: 25px;
+    height: 25px;
+    content: ' ';
+    border-radius: 50%;
+    background-color: black;
+    margin: 0px 5px 0px 0px;
+    position: relative;
+    cursor: pointer;
+}
+.radio-button-color:checked ~ .circle::after {
+    content: "";
+    position: absolute;
+    top: 7.5px;
+    left: 7.5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: white;
+}
+.blue {
+    background-color: #3F88E8;
+}
+.red {
+    background-color: #E83F56;
+}
+.green {
+    background-color: #097A14;
+}
+.yellow {
+    background-color: #DCA40A;
+}
+.pink {
+    background-color: #DC0AD5;
+}
+
+.grey {
+    background-color: #474747;
+}
+.grey2 {
+    background-color: black;
+}
+.grey3 {
+    background-color: #636363;
+}
+.grey4 {
+    background-color: #9E9E9E;
+}
+.grey5 {
+    background-color: #BBBBBB;
+}
+.grey6 {
+    background-color: #E3E3E3;
+}
+
+
+.main-container{
+    display: flex;
+}
+.business-card {
+    display: none;
+    flex-direction: column;
+    border: 1px solid #a9a9a9;
+    height: 295px;
+    width: 550px;
+    background-color: white;
+    font-family: Verdana;
+    align-items: flex-end;
+    border-radius: 7px;
+    box-shadow: 0 4px 15px #a9a9a9;
+    margin: 80px 0px 0px 0px;
+}
+.org{
+    color: grey;
+    font-size: 16px;
+    text-align: center;
+    padding: 15px 0px 25px 0px;
+    width: 100%;
+}
+.name {
+    color: black;
+    font-size: 26px;
+    text-align: center;
+    padding: 0px 0px 10px 0px;
+    margin: 0px auto;
+    font-weight: bold;
+    width: 90%;
+}
+.post {
+    font-size: 16px;
+    color: grey;
+    text-align: center;
+    width: 90%;
+    margin: 0px auto;
+}
+.number, .email, .address{
+    text-align: left;
+    margin: 0px 0px 10px 0px;
+}
+.info{
+    width: 50%;
+    margin: 25px 0px 50px 0px;
+}
